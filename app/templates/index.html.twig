@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Secure files sharing{% endblock %}
+
+{% block body %}
+<section id="research-hash" class="page-section">
+    <div class="container">
+        <h1 class="text-center">Secure files sharing</h1>
+
+        {% if parentDir != currentDir %}
+            [ <a href="{{ path('index', {'dir':parentDir}) }}">..</a> ]
+        {% endif %}
+        {% if directoryList %}
+            {% for directory in directoryList %}
+                {# { dump(directory) }#}
+                [ <a href="{{ path('index', {'dir':currentDir ~ '/' ~ directory}) }}">{{ directory }}</a> ]
+            {% endfor %}
+        {% endif %}
+
+        ---
+
+        {% if fileList %}
+            {% for file in fileList %}
+                {# { dump(file) }#}
+                [ <a href="{{ path('file', {'path':currentDir ~ '/' ~ file}) }}">{{ file }}</a> ]
+            {% endfor %}
+        {% endif %}
+
+        ---
+
+        <div class="text-center">
+            <p>This project is at a very early stage. We want to secure share files.</p>
+            <p>The first version was created in one day, so now it is time to test it on users.</p>
+        </div>
+
+        <div class="text-center mt-5 pt-3 border-top footer">
+            Created with &hearts; by <a href="https://obel.cz">Obel</a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
